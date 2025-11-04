@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Projects — Meenakshi Ramesh</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bg: #0d0d0d;
+      --text: #ffffff;
+      --muted: #aaaaaa;
+      --accent: #ffffff;
+    }
+    * { box-sizing: border-box; margin:0; padding:0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+    header {
+      width:100%; position:fixed; top:0; left:0;
+      background: rgba(0,0,0,0.6); backdrop-filter:blur(10px);
+      padding: 20px 40px; display:flex; justify-content:center; z-index:100;
+      border-bottom:1px solid rgba(255,255,255,0.1);
+    }
+    nav a {
+      color: var(--text);
+      font-family: 'Cormorant Garamond', serif;
+      text-decoration:none;
+      font-size:1.1rem; letter-spacing:1px; margin:0 25px;
+      transition: color .2s ease;
+    }
+    nav a:hover { color: var(--muted); }
+
+    /* HERO SECTION FOR PROJECTS PAGE */
+.projects-hero {
+  position: relative;
+  width: 100%;
+  height: 60vh;
+  background: linear-gradient(180deg, rgba(0,0,0,0.4), rgba(0,0,0,0.7)),
+              url("images/ui-bg.jpg") center/cover no-repeat;
+  background-attachment: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 60px;
+}
+
+.projects-hero .overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+}
+
+.projects-hero .hero-text {
+  position: relative;
+  text-align: center;
+  z-index: 2;
+  padding: 0 20px;
+}
+
+.projects-hero .hero-text h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem;
+  letter-spacing: 2px;
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+.projects-hero .hero-text p {
+  color: var(--muted);
+  font-size: 1.1rem;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px,1fr));
+      gap: 24px;
+      max-width: 1200px;
+      margin: 60px auto;
+      padding: 0 20px 120px;
+    }
+    .project-card {
+      background: #141414;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform .3s ease, box-shadow .3s ease;
+      cursor: pointer;
+    }
+    .project-card img {
+      width:100%;
+      height:200px;
+      object-fit:cover;
+      display:block;
+    }
+    .project-card .card-content {
+      padding: 20px;
+    }
+    .project-card .card-content h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      margin: 0 0 12px;
+      color: var(--accent);
+    }
+    .project-card .card-content p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin:0;
+    }
+	  
+	  .project-card {
+  text-decoration: none; /* removes underline from the whole card */
+  color: inherit; /* ensures text color stays as intended */
+}
+
+.project-card p,
+.project-card h3 {
+  text-decoration: none; /* removes underline from heading and paragraph */
+}
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.6);
+    }
+
+    /* Footer */
+    .modern-footer {
+      background-color: #211c19;
+      color: #fff;
+      text-align: center;
+      padding: 80px 0 40px;
+      font-family: "Playfair Display", serif;
+    }
+    .footer-nav {
+      display:flex; flex-direction:column; align-items:center; gap:18px; margin-bottom:40px;
+    }
+    .footer-nav a {
+      color:#fff; text-decoration:none; letter-spacing:2px; font-size:1rem; transition:color .3s ease;
+    }
+    .footer-nav a:hover { color:#d4d4d4; }
+    .footer-socials {
+      display:flex; justify-content:center; gap:30px; margin-bottom:25px;
+    }
+    .footer-socials a {
+      background-color:#fff; color:#000; font-size:1.2rem;
+      width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+      transition:all .3s ease;
+    }
+    .footer-socials a:hover { background-color:#ddd; transform:scale(1.1); }
+    .footer-copy { font-size:0.85rem; color:#b8b8b8; margin-top:10px; letter-spacing:1px; }
+  </style>
+</head>
+<body>
+
+<header>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+ <!-- HERO HEADER FOR PROJECTS -->
+<section class="projects-hero">
+  <div class="overlay">
+    <div class="hero-text">
+      <h1>UI PROJECTS</h1>
+      <p>Exploring simplicity, inclusivity, and thoughtful design through each project.</p>
+    </div>
+  </div>
+</section>
+
+
+  <div class="projects-grid">
+    <!-- Project 1 -->
+   <a href="case-ui1.html" class="project-card">
+  <img src="images/project1.jpg" alt="SplitEase App">
+  <div class="card-content">
+    <h3>SplitEase — Splitting Money Between Friends</h3>
+    <p>A minimal app designed to make splitting expenses between friends effortless and transparent, focusing on clarity and ease of use.</p>
+  </div>
+</a>
+
+
+    <a href="case-ui2.html" class="project-card">
+  <img src="images/project2.jpg" alt="BookMyShow Redesign">
+  <div class="card-content">
+    <h3>BookMyShow — App Redesign</h3>
+    <p>A redesigned experience for India’s leading entertainment booking platform, focused on smoother navigation, personalized recommendations, and a cleaner interface.</p>
+  </div>
+</a>
+
+
+    <!-- Project 3 -->
+    <div class="project-card">
+      <img src="images/project3.jpg" alt="Cult.fit Redesign">
+      <div class="card-content">
+        <h3>Cult.fit Redesign — Redefining Fitness UX</h3>
+        <p>A cleaner, more intuitive version of Cult.fit that simplifies workout discovery and builds a seamless journey between online and offline fitness experiences.</p>
+      </div>
+    </div>
+
+    <!-- Project 4 -->
+    <div class="project-card">
+      <img src="images/project5.jpg" alt="MindEase App">
+      <div class="card-content">
+        <h3>Tata Neu Redesign </h3>
+        <p>A Unified Shopping Experience
+A refreshed design for Tata Neu that simplifies navigation across multiple brands, creates visual consistency, and makes rewards and checkout more intuitive — bringing clarity to India’s first super-app.</p>
+      </div>
+    </div>
+
+    <!-- Project 5 -->
+    <div class="project-card">
+      <img src="images/project4.jpg" alt="Google Pay Redesign">
+      <div class="card-content">
+        <h3>Google Pay Redesign — For Everyone</h3>
+        <p>A redesign focused on inclusivity and clarity, making everyday transactions simpler while improving navigation and visual hierarchy for all demographics.</p>
+      </div>
+    </div>
+</div>
+
+  <footer class="modern-footer">
+    <nav class="footer-nav">
+      <a href="index.html">HOME</a>
+      <a href="about.html">ABOUT</a>
+      <a href="projects.html">PROJECTS</a>
+      <a href="contact.html">CONTACT</a>
+    </nav>
+
+    <div class="footer-socials">
+      <a href="https://www.instagram.com/chay_a_m?igsh=MTkzdTloaWEyOTlhOQ==" target="_blank">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://www.behance.net/meenakshiramesh" target="_blank">
+        <i class="fab fa-behance"></i>
+      </a>
+      <a href="https://www.linkedin.com/" target="_blank">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </div>
+
+    <p class="footer-copy">© 2025, Meenakshi Ramesh</p>
+  </footer>
+
+</body>
+</html>

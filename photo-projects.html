@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PHOTOGRAPHY</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #111;
+      color: #fff;
+      font-family: Helvetica, Arial, sans-serif;
+      overflow-x: hidden;
+      padding-top: 80px;
+    }
+
+    /* HEADER */
+    header {
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    nav a {
+      color: #ffffff;
+      font-family: 'Cormorant Garamond', serif;
+      text-decoration: none;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+      margin: 0 25px;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: #aaaaaa;
+    }
+
+    /* HAMBURGER ICON */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      position: absolute;
+      right: 30px;
+      top: 25px;
+      width: 25px;
+      height: 18px;
+      justify-content: space-between;
+      z-index: 1100;
+    }
+
+    .hamburger div {
+      width: 100%;
+      height: 3px;
+      background-color: white;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    /* OVERLAY MENU */
+    .overlay-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 1050;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: opacity 0.3s ease;
+    }
+
+    .overlay-menu.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .overlay-menu a {
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      margin: 15px 0;
+      letter-spacing: 2px;
+      transition: color 0.3s ease;
+    }
+
+    .overlay-menu a:hover {
+      color: #aaa;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 25px;
+      right: 35px;
+      font-size: 2rem;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 60vh;
+      background: url('images/photo-hero.jpg') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    .hero h1 {
+      position: relative;
+      font-size: 3rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      z-index: 2;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+    }
+
+    .subtext {
+      text-align: center;
+      margin: 30px auto 50px;
+      font-size: 1.1rem;
+      color: #ccc;
+      max-width: 700px;
+    }
+
+    /* GALLERY */
+    .gallery-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0;
+      width: 100%;
+      height: 80vh;
+      overflow: hidden;
+      margin-bottom: 80px;
+    }
+
+    .photo {
+      position: relative;
+      flex: 1;
+      height: 100%;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.4s ease;
+    }
+
+    .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: all 0.4s ease;
+    }
+
+    .photo:hover img {
+      filter: brightness(60%);
+      transform: scale(1.05);
+    }
+
+    .photo .overlay {
+      position: absolute;
+      bottom: 20px;
+      left: 25px;
+      color: #fff;
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: 3;
+    }
+
+    .photo:hover .overlay {
+      opacity: 1;
+    }
+
+    @media (max-width: 768px) {
+      .gallery-container {
+        flex-direction: column;
+        height: auto;
+      }
+
+      .photo {
+        width: 100%;
+        height: 60vh;
+      }
+    }
+
+    /* FOOTER */
+    .modern-footer {
+      background-color: #211c19;
+      color: #fff;
+      text-align: center;
+      padding: 80px 0 40px;
+      font-family: "Playfair Display", serif;
+    }
+
+    .footer-nav {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 40px;
+    }
+
+    .footer-nav a {
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: 2px;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .footer-nav a:hover {
+      color: #d4d4d4;
+    }
+
+    .footer-socials {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 25px;
+    }
+
+    .footer-socials a {
+      background-color: #fff;
+      color: #000;
+      font-size: 1.2rem;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .footer-socials a:hover {
+      background-color: #ddd;
+      transform: scale(1.1);
+    }
+
+    .footer-copy {
+      font-size: 0.85rem;
+      color: #b8b8b8;
+      margin-top: 10px;
+      letter-spacing: 1px;
+    }
+
+    /* RESPONSIVE NAV */
+    @media (max-width: 900px) {
+      nav {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+      }
+    }
+
+  </style>
+
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="hamburger" id="hamburger">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </header>
+
+  <!-- Overlay Menu -->
+  <div class="overlay-menu" id="overlayMenu">
+    <span class="close-btn" id="closeBtn">&times;</span>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <section class="hero">
+    <h1>Photography</h1>
+  </section>
+
+  <p class="subtext">
+    A collection of editorial-style shoots — blending texture, light, and personality in carefully constructed frames.
+  </p>
+
+  <div class="gallery-container">
+    <div class="photo" onclick="window.location.href='photo-features.html#shoot1'">
+      <img src="images/photo1.JPG" alt="Shoot 1">
+      <div class="overlay">Travis Scott — Editorial Styling Experiment</div>
+    </div>
+    <div class="photo" onclick="window.location.href='photo-features.html#shoot2'">
+      <img src="images/photo2.jpg" alt="Shoot 2">
+      <div class="overlay">H & M Summer Pulse — Campaign Concept</div>
+    </div>
+    <div class="photo" onclick="window.location.href='photo-features.html#shoot3'">
+      <img src="images/photo3.JPG" alt="Shoot 3">
+      <div class="overlay">Threaded Grace</div>
+    </div>
+    <div class="photo" onclick="window.location.href='photo-features.html#shoot4'">
+      <img src="images/photo4.jpg" alt="Shoot 4">
+      <div class="overlay">The new denim — a Levi’s concept</div>
+    </div>
+    <div class="photo" onclick="window.location.href='photo-features.html#shoot5'">
+      <img src="images/photo5.jpg" alt="Shoot 5">
+      <div class="overlay">Studio Edit</div>
+    </div>
+  </div>
+
+  <footer class="modern-footer">
+    <nav class="footer-nav">
+      <a href="index.html">HOME</a>
+      <a href="about.html">ABOUT</a>
+      <a href="projects.html">PROJECTS</a>
+      <a href="contact.html">CONTACT</a>
+    </nav>
+
+    <div class="footer-socials">
+      <a href="https://www.instagram.com/chay_a_m?igsh=MTkzdTloaWEyOTlhOQ==" target="_blank">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://www.behance.net/meenakshiramesh" target="_blank">
+        <i class="fab fa-behance"></i>
+      </a>
+      <a href="https://www.linkedin.com/" target="_blank">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </div>
+
+    <p class="footer-copy">© 2025, Meenakshi Ramesh</p>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const overlayMenu = document.getElementById('overlayMenu');
+    const closeBtn = document.getElementById('closeBtn');
+
+    hamburger.addEventListener('click', () => {
+      overlayMenu.classList.add('active');
+    });
+
+    closeBtn.addEventListener('click', () => {
+      overlayMenu.classList.remove('active');
+    });
+
+    overlayMenu.addEventListener('click', (e) => {
+      if (e.target === overlayMenu) {
+        overlayMenu.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>

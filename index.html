@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Meenakshi Ramesh — Portfolio</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bg: #0e0e0e;
+      --muted: #9a9a9a;
+      --accent: #ffffff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--accent);
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* NAVBAR */
+    .nav-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      position: relative;
+      padding: 20px 0;
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 25px;
+      height: 18px;
+      cursor: pointer;
+      position: absolute;
+      right: 30px;
+      top: 22px;
+      z-index: 100;
+    }
+
+    .menu-toggle .bar {
+      height: 3px;
+      width: 100%;
+      background-color: #fff;
+      border-radius: 10px;
+    }
+
+    .navlinks {
+      display: flex;
+      gap: 50px;
+      font-size: 1rem;
+      letter-spacing: 1px;
+    }
+
+    .navlinks a {
+      transition: color 0.3s ease;
+    }
+
+    .navlinks a:hover {
+      color: #cfcfcf;
+    }
+
+    @media (max-width: 768px) {
+      .navlinks {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background-color: rgba(0, 0, 0, 0.9);
+        text-align: center;
+        padding: 20px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .navlinks.active {
+        display: flex;
+      }
+
+      .navlinks a {
+        padding: 12px 0;
+        font-size: 1.1rem;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      header.site-nav {
+        justify-content: flex-start;
+        padding: 20px;
+      }
+    }
+
+    /* HERO */
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url("images/hero-bg.jpg") center/cover no-repeat;
+      background-attachment: fixed;
+      padding: 0 20px;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.8rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-family: 'Inter', sans-serif;
+      color: var(--muted);
+      font-size: 1.1rem;
+      max-width: 720px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.4rem;
+        letter-spacing: 2px;
+      }
+    }
+
+    /* MID STRIP */
+    .mid-strip {
+      text-align: center;
+      padding: 120px 20px 100px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .mid-strip .intro-line {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      letter-spacing: 0.8px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      color: #d8d8d8;
+    }
+
+    .mid-strip .scroll-hint {
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.6px;
+      color: var(--muted);
+      opacity: 0.9;
+      animation: fadeDown 2s infinite;
+    }
+
+    @keyframes fadeDown {
+      0%, 100% { transform: translateY(0); opacity: 0.6; }
+      50% { transform: translateY(6px); opacity: 1; }
+    }
+
+
+    /* PROJECT SECTIONS */
+    .project-sections {
+      padding: 100px 0 60px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .thumb-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: nowrap;
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    .thumb-card {
+      position: relative;
+      flex: 1 1 25%;
+      overflow: hidden;
+      height: 460px;
+      cursor: pointer;
+    }
+
+    .thumb-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease, filter 0.5s ease;
+      filter: brightness(60%);
+    }
+
+    .thumb-card:hover img {
+      transform: scale(1.05);
+      filter: brightness(100%);
+    }
+
+    .thumb-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      transition: background 0.4s ease;
+      z-index: 1;
+    }
+
+    .thumb-card:hover::before {
+      background: rgba(0, 0, 0, 0.1);
+    }
+
+    .thumb-card .overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      z-index: 2;
+      padding-bottom: 32px;
+    }
+
+    .thumb-card h3 {
+      color: #fff;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+      margin: 0;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+      transition: transform 0.4s ease, opacity 0.4s ease;
+      opacity: 0.8;
+    }
+
+    .thumb-card:hover h3 {
+      transform: translateY(-6px);
+      opacity: 1;
+    }
+
+    /* VIEW MORE */
+    .view-more-container {
+      display: flex;
+      justify-content: center;
+      margin: 80px 0 120px;
+    }
+
+    .view-more-bar {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.4);
+      color: #fff;
+      padding: 14px 60px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+      letter-spacing: 1px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .view-more-bar:hover {
+      background: #fff;
+      color: #0e0e0e;
+      border-color: #fff;
+    }
+
+    /* FOOTER */
+    .modern-footer {
+      background-color: #211c19;
+      color: #fff;
+      text-align: center;
+      padding: 80px 0 40px;
+      font-family: "Playfair Display", serif;
+    }
+
+    .footer-nav {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 40px;
+    }
+
+    .footer-nav a {
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: 2px;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .footer-nav a:hover {
+      color: #d4d4d4;
+    }
+
+    .footer-socials {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 25px;
+    }
+
+    .footer-socials a {
+      background-color: #fff;
+      color: #000;
+      font-size: 1.2rem;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .footer-socials a:hover {
+      background-color: #ddd;
+      transform: scale(1.1);
+    }
+
+    .footer-copy {
+      font-size: 0.85rem;
+      color: #b8b8b8;
+      margin-top: 10px;
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <header class="site-nav">
+    <div class="nav-container">
+      <div class="menu-toggle" id="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <nav class="navlinks" id="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1>MEENAKSHI RAMESH</h1>
+    <p>UI/UX Designer & Visual Storyteller blending structure, aesthetics, and emotion into digital experiences.</p>
+  </section>
+
+  <!-- MID STRIP -->
+  <section class="mid-strip">
+    <p class="intro-line">Exploring design through interfaces, visuals, and stories.</p>
+    <p class="scroll-hint">Scroll down to see selected works ↓</p>
+  </section>
+
+  <!-- PROJECT SECTIONS -->
+  <section class="project-sections">
+    <div class="thumb-row">
+      <a href="ui-projects.html" class="thumb-card">
+        <img src="images/ui-thumb.jpg" alt="UI/UX Projects">
+        <div class="overlay"><h3>UI/UX</h3></div>
+      </a>
+      <a href="branding-projects.html" class="thumb-card">
+        <img src="images/branding-thumb.jpg" alt="Branding Projects">
+        <div class="overlay"><h3>Branding</h3></div>
+      </a>
+      <a href="ads-projects.html" class="thumb-card">
+        <img src="images/ads-thumb.jpg" alt="Advertising Projects">
+        <div class="overlay"><h3>Advertising</h3></div>
+      </a>
+      <a href="photo-projects.html" class="thumb-card">
+        <img src="images/photo-thumb.jpg" alt="Photography Projects">
+        <div class="overlay"><h3>Photography</h3></div>
+      </a>
+    </div>
+  </section>
+
+  <!-- VIEW MORE -->
+  <div class="view-more-container">
+    <a href="projects.html" class="view-more-bar">View More</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="modern-footer">
+    <nav class="footer-nav">
+      <a href="index.html">HOME</a>
+      <a href="about.html">ABOUT</a>
+      <a href="projects.html">PROJECTS</a>
+      <a href="contact.html">CONTACT</a>
+    </nav>
+
+    <div class="footer-socials">
+      <a href="https://www.instagram.com/chay_a_m?igsh=MTkzdTloaWEyOTlhOQ==" target="_blank">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://www.behance.net/meenakshiramesh" target="_blank">
+        <i class="fab fa-behance"></i>
+      </a>
+      <a href="https://www.linkedin.com/" target="_blank">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </div>
+
+    <p class="footer-copy">© 2025, Meenakshi Ramesh</p>
+  </footer>
+
+  <!-- FIXED SCRIPT -->
+  <script>
+    const mobileMenu = document.getElementById("mobile-menu");
+    const navLinks = document.getElementById("nav-links");
+
+    mobileMenu.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+      mobileMenu.classList.toggle("open");
+    });
+  </script>
+</body>
+</html>

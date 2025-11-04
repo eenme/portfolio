@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact — Meenakshi Ramesh</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bg: #0d0d0d;
+      --text: #ffffff;
+      --muted: #aaaaaa;
+      --accent: #ffffff;
+    }
+    * { box-sizing: border-box; margin:0; padding:0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* HEADER */
+    header {
+      width:100%; 
+      position:fixed; 
+      top:0; 
+      left:0;
+      background: rgba(0,0,0,0.6); 
+      backdrop-filter:blur(10px);
+      padding: 20px 40px; 
+      display:flex; 
+      justify-content:center; 
+      align-items:center;
+      z-index:100; 
+      border-bottom:1px solid rgba(255,255,255,0.1);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 25px;
+    }
+
+    nav a {
+      color: var(--text);
+      font-family: 'Cormorant Garamond', serif;
+      text-decoration:none;
+      font-size:1.1rem; 
+      letter-spacing:1px;
+      transition: color .2s ease;
+    }
+    nav a:hover { color: var(--muted); }
+
+    /* HAMBURGER */
+    .hamburger {
+      display: none;
+      position: absolute;
+      right: 30px;
+      top: 22px;
+      font-size: 1.5rem;
+      color: #fff;
+      cursor: pointer;
+      z-index: 200;
+    }
+
+    /* OVERLAY MENU */
+    .mobile-nav-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(10px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 150;
+    }
+
+    .mobile-nav-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .mobile-nav-overlay a {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .mobile-nav-overlay a:hover {
+      color: var(--muted);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 25px;
+      right: 30px;
+      font-size: 1.8rem;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    /* CONTACT PAGE HERO */
+    .contact-hero {
+      height: 60vh;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), 
+                  url("images/hero-bg.jpg") center/cover no-repeat;
+      background-attachment: fixed;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      margin-top: 80px;
+    }
+
+    .overlay-text h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      letter-spacing: 1px;
+      color: #fff;
+      margin: 0 20px;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      padding: 100px 20px 120px;
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .contact-section h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size:2.8rem;
+      margin-bottom: 20px;
+      word-wrap: break-word;
+    }
+    .contact-section p {
+      font-size:1.1rem;
+      color: var(--muted);
+      margin-bottom: 40px;
+    }
+
+    .contact-details {
+      font-family: 'Inter', sans-serif;
+      font-size:1rem;
+      color: var(--text);
+      margin-bottom: 60px;
+      line-height: 1.8;
+    }
+    .contact-details a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .contact-details a:hover { color: var(--muted); }
+
+    /* Contact Form */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      text-align: left;
+    }
+    label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+    }
+    input, textarea {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.3);
+      color: var(--text);
+      padding: 12px 15px;
+      font-size: 1rem;
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      transition: border .2s;
+    }
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #fff;
+    }
+    textarea {
+      resize: none;
+      height: 120px;
+    }
+    button {
+      background: #fff;
+      color: #000;
+      border: none;
+      padding: 12px 0;
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all .3s ease;
+    }
+    button:hover {
+      background: #d4d4d4;
+    }
+
+     /* FOOTER */
+    .modern-footer {
+      background-color: #211c19;
+      color: #fff;
+      text-align: center;
+      padding: 80px 0 40px;
+      font-family: "Playfair Display", serif;
+    }
+
+    .footer-nav {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 40px;
+    }
+
+    .footer-nav a {
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: 2px;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .footer-nav a:hover {
+      color: #d4d4d4;
+    }
+
+    .footer-socials {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 25px;
+    }
+
+    .footer-socials a {
+      background-color: #fff;
+      color: #000;
+      font-size: 1.2rem;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .footer-socials a:hover {
+      background-color: #ddd;
+      transform: scale(1.1);
+    }
+
+    .footer-copy {
+      font-size: 0.85rem;
+      color: #b8b8b8;
+      margin-top: 10px;
+      letter-spacing: 1px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+      }
+      .hamburger {
+        display: block;
+      }
+      .overlay-text h2 {
+        font-size: 1.4rem;
+        padding: 0 15px;
+      }
+      .contact-section {
+        padding: 80px 20px 100px;
+      }
+      .contact-section h1 {
+        font-size: 2rem;
+      }
+      .contact-section p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="hamburger"><i class="fas fa-bars"></i></div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <div class="mobile-nav-overlay" id="mobileNav">
+    <span class="close-btn" id="closeNav"><i class="fas fa-times"></i></span>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <section class="contact-hero">
+    <div class="overlay-text">
+      <h2>Let’s Create Something Meaningful</h2>
+    </div>
+  </section>
+
+  <section class="contact-section">
+    <h1>GET IN TOUCH</h1>
+    <p>Feel free to reach out for collaborations, freelance projects, or just to say hello!</p>
+
+    <div class="contact-details">
+      <p>Email: <a href="mailto:meeneenmu@gmail.com">meeneenmu@gmail.com</a></p>
+      <p>Phone: <a href="tel:+917907569808">+91 7907569808</a></p>
+    </div>
+
+    <form action="https://formspree.io/f/mnnqgebl" method="POST">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required>
+
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="_replyto" required>
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" required></textarea>
+
+      <button type="submit">SEND MESSAGE</button>
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="modern-footer">
+    <nav class="footer-nav">
+      <a href="index.html">HOME</a>
+      <a href="about.html">ABOUT</a>
+      <a href="projects.html">PROJECTS</a>
+      <a href="contact.html">CONTACT</a>
+    </nav>
+
+    <div class="footer-socials">
+      <a href="https://www.instagram.com/chay_a_m?igsh=MTkzdTloaWEyOTlhOQ==" target="_blank">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://www.behance.net/meenakshiramesh" target="_blank">
+        <i class="fab fa-behance"></i>
+      </a>
+      <a href="https://www.linkedin.com/" target="_blank">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </div>
+
+    <p class="footer-copy">© 2025, Meenakshi Ramesh</p>
+  </footer>
+
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    const closeBtn = document.getElementById('closeNav');
+
+    hamburger.addEventListener('click', () => {
+      mobileNav.classList.add('active');
+    });
+
+    closeBtn.addEventListener('click', () => {
+      mobileNav.classList.remove('active');
+    });
+
+    mobileNav.addEventListener('click', (e) => {
+      if (e.target === mobileNav) {
+        mobileNav.classList.remove('active');
+      }
+    });
+  </script>
+
+</body>
+</html>

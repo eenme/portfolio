@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Case Study — Tata Neu Redesign</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bg: #0e0e0e;
+      --muted: #9a9a9a;
+      --accent: #ffffff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--accent);
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* NAVBAR */
+    header.site-nav {
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 50;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px 40px;
+    }
+
+    .navlinks {
+      display: flex;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .navlinks a {
+      color: var(--accent);
+      font-family: 'Cormorant Garamond', serif;
+      text-decoration: none;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+      transition: color 0.2s ease;
+    }
+
+    .navlinks a:hover { color: var(--muted); }
+
+    /* HAMBURGER MENU */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 26px;
+      height: 18px;
+      cursor: pointer;
+      position: absolute;
+      right: 35px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 60;
+    }
+
+    .hamburger span {
+      display: block;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 1px;
+      transition: all 0.3s ease;
+    }
+
+    /* MOBILE VIEW */
+    @media (max-width: 800px) {
+      .navlinks {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        padding: 30px 0;
+        text-align: center;
+      }
+
+      .navlinks.active { display: flex; }
+
+      .navlinks a {
+        margin: 15px 0;
+        font-size: 1.2rem;
+      }
+
+      .hamburger { display: flex; }
+    }
+
+    /* MAIN CONTENT */
+    main {
+      padding: 140px 20px 100px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      letter-spacing: 2px;
+      margin-bottom: 50px;
+      text-align: center;
+      word-wrap: break-word;
+    }
+
+    @media(max-width:600px){
+      h1{font-size:2.2rem;}
+    }
+
+    .slide {
+      margin-bottom: 60px;
+    }
+
+    .slide img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 4px;
+    }
+
+    .slide:last-child {
+      margin-bottom: 0;
+    }
+
+    /* BACK BUTTON */
+    .back-btn {
+      display: inline-block;
+      margin-top: 80px;
+      text-align: center;
+      font-size: 1rem;
+      color: #fff;
+      border: 1px solid #fff;
+      padding: 12px 28px;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background: #fff;
+      color: #000;
+    }
+
+    /* FOOTER */
+    .modern-footer {
+      background-color: #211c19;
+      color: #fff;
+      text-align: center;
+      padding: 80px 0 40px;
+      font-family: "Playfair Display", serif;
+    }
+
+    .footer-nav {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 40px;
+    }
+
+    .footer-nav a {
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: 2px;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .footer-nav a:hover { color: #d4d4d4; }
+
+    .footer-socials {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 25px;
+    }
+
+    .footer-socials a {
+      background-color: #fff;
+      color: #000;
+      font-size: 1.2rem;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .footer-socials a:hover {
+      background-color: #ddd;
+      transform: scale(1.1);
+    }
+
+    .footer-copy {
+      font-size: 0.85rem;
+      color: #b8b8b8;
+      margin-top: 10px;
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <header class="site-nav">
+    <nav class="navlinks">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+    <h1>Tata Neu Redesign</h1>
+
+    <!-- Stacked slides -->
+    <div class="slide"><img src="images/tata1.jpg" alt="Tata Neu Redesign Slide 1"></div>
+    <div class="slide"><img src="images/tata2.jpg" alt="Tata Neu Redesign Slide 2"></div>
+    <div class="slide"><img src="images/tata3.jpg" alt="Tata Neu Redesign Slide 3"></div>
+    <div class="slide"><img src="images/tata4.jpg" alt="Tata Neu Redesign Slide 4"></div>
+    <div class="slide"><img src="images/tata5.jpg" alt="Tata Neu Redesign Slide 5"></div>
+    <div class="slide"><img src="images/tata6.jpg" alt="Tata Neu Redesign Slide 6"></div>
+    <div class="slide"><img src="images/tata7.jpg" alt="Tata Neu Redesign Slide 7"></div>
+    <div class="slide"><img src="images/tata8.jpg" alt="Tata Neu Redesign Slide 8"></div>
+    <div class="slide"><img src="images/tata9.jpg" alt="Tata Neu Redesign Slide 9"></div>
+    <div class="slide"><img src="images/tata10.jpg" alt="Tata Neu Redesign Slide 10"></div>
+    <div class="slide"><img src="images/tata11.jpg" alt="Tata Neu Redesign Slide 11"></div>
+    <div class="slide"><img src="images/tata12.jpg" alt="Tata Neu Redesign Slide 12"></div>
+    <div class="slide"><img src="images/tata13.jpg" alt="Tata Neu Redesign Slide 13"></div>
+    <div class="slide"><img src="images/tata14.jpg" alt="Tata Neu Redesign Slide 14"></div>
+    <div class="slide"><img src="images/tata15.jpg" alt="Tata Neu Redesign Slide 15"></div>
+    <div class="slide"><img src="images/tata16.jpg" alt="Tata Neu Redesign Slide 16"></div>
+    <div class="slide"><img src="images/tata17.jpg" alt="Tata Neu Redesign Slide 17"></div>
+    <div class="slide"><img src="images/tata18.jpg" alt="Tata Neu Redesign Slide 18"></div>
+    <div class="slide"><img src="images/tata19.jpg" alt="Tata Neu Redesign Slide 19"></div>
+    <div class="slide"><img src="images/tata20.jpg" alt="Tata Neu Redesign Slide 20"></div>
+    <div class="slide"><img src="images/tata21.jpg" alt="Tata Neu Redesign Slide 21"></div>
+    <div class="slide"><img src="images/tata22.jpg" alt="Tata Neu Redesign Slide 22"></div>
+    <div class="slide"><img src="images/tata23.jpg" alt="Tata Neu Redesign Slide 23"></div>
+    <div class="slide"><img src="images/tata24.jpg" alt="Tata Neu Redesign Slide 24"></div>
+    <div class="slide"><img src="images/tata25.jpg" alt="Tata Neu Redesign Slide 25"></div>
+
+    <!-- Back button -->
+    <div style="text-align:center;">
+      <a href="projects.html" class="back-btn">← Back to Projects</a>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="modern-footer">
+    <nav class="footer-nav">
+      <a href="index.html">HOME</a>
+      <a href="about.html">ABOUT</a>
+      <a href="projects.html">PROJECTS</a>
+      <a href="contact.html">CONTACT</a>
+    </nav>
+
+    <div class="footer-socials">
+      <a href="https://www.instagram.com/chay_a_m?igsh=MTkzdTloaWEyOTlhOQ==" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.behance.net/meenakshiramesh" target="_blank"><i class="fab fa-behance"></i></a>
+      <a href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+
+    <p class="footer-copy">© 2025, Meenakshi Ramesh</p>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navlinks = document.querySelector('.navlinks');
+    hamburger.addEventListener('click', () => {
+      navlinks.classList.toggle('active');
+    });
+  </script>
+
+</body>
+</html>
+

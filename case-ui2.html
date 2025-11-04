@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Case Study — BookMyShow Redesign</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bg: #0e0e0e;
+      --muted: #9a9a9a;
+      --accent: #ffffff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--accent);
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* NAVBAR */
+    header.site-nav {
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 60;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: center; /* centers the navbar links */
+      align-items: center;
+      padding: 20px 40px;
+    }
+
+    .navlinks {
+      display: flex;
+      gap: 50px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .navlinks a {
+      color: var(--accent);
+      font-family: 'Cormorant Garamond', serif;
+      text-decoration: none;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+      transition: color 0.2s ease;
+    }
+
+    .navlinks a:hover { color: var(--muted); }
+
+    /* HAMBURGER ICON */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      position: fixed;
+      top: 25px;
+      right: 35px;
+      z-index: 110;
+    }
+
+    .hamburger span {
+      width: 28px;
+      height: 2px;
+      background: #fff;
+      transition: all 0.3s ease;
+    }
+
+    /* MOBILE NAV */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(10px);
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      z-index: 105;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .mobile-nav.active { display: flex; }
+
+    .mobile-nav a {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      color: #fff;
+      letter-spacing: 2px;
+    }
+
+    /* Close Button */
+    .close-btn {
+      position: absolute;
+      top: 25px;
+      right: 35px;
+      font-size: 2rem;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    /* Overlay (click outside to close) */
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+    }
+
+    .overlay.active { display: block; }
+
+    /* MAIN CONTENT */
+    main {
+      padding: 140px 20px 100px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      letter-spacing: 2px;
+      margin-bottom: 50px;
+      text-align: center;
+    }
+
+    .slide {
+      margin-bottom: 60px;
+    }
+
+    .slide img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 4px;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-top: 80px;
+      text-align: center;
+      font-size: 1rem;
+      color: #fff;
+      border: 1px solid #fff;
+      padding: 12px 28px;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background: #fff;
+      color: #000;
+    }
+
+    /* FOOTER */
+    .modern-footer {
+      background-color: #211c19;
+      color: #fff;
+      text-align: center;
+      padding: 80px 0 40px;
+      font-family: "Playfair Display", serif;
+    }
+
+    .footer-nav {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 40px;
+    }
+
+    .footer-nav a {
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: 2px;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .footer-nav a:hover { color: #d4d4d4; }
+
+    .footer-socials {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 25px;
+    }
+
+    .footer-socials a {
+      background-color: #fff;
+      color: #000;
+      font-size: 1.2rem;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .footer-socials a:hover {
+      background-color: #ddd;
+      transform: scale(1.1);
+    }
+
+    .footer-copy {
+      font-size: 0.85rem;
+      color: #b8b8b8;
+      margin-top: 10px;
+      letter-spacing: 1px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      header.site-nav {
+        justify-content: space-between;
+        padding: 20px 30px;
+      }
+
+      .navlinks { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- OVERLAY -->
+  <div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
+  <!-- NAV -->
+  <header class="site-nav">
+    <nav class="navlinks">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </header>
+
+  <!-- MOBILE NAV -->
+  <div class="mobile-nav" id="mobileNav">
+    <div class="close-btn" onclick="closeMenu()">&times;</div>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <!-- MAIN -->
+  <main>
+    <h1>BookMyShow Redesign</h1>
+
+    <!-- Stacked slides -->
+    <div class="slide"><img src="images/2slide1.jpg" alt="BookMyShow Redesign Slide 1"></div>
+    <div class="slide"><img src="images/2slide2.jpg" alt="BookMyShow Redesign Slide 2"></div>
+    <div class="slide"><img src="images/2slide3.jpg" alt="BookMyShow Redesign Slide 3"></div>
+    <div class="slide"><img src="images/2slide4.jpg" alt="BookMyShow Redesign Slide 4"></div>
+    <div class="slide"><img src="images/2slide5.jpg" alt="BookMyShow Redesign Slide 5"></div>
+	  <div class="slide"><img src="images/2slide6.jpg" alt="BookMyShow Redesign Slide 5"></div>
+	  <div class="slide"><img src="images/2slide7.jpg" alt="BookMyShow Redesign Slide 5"></div>
+	  <div class="slide"><img src="images/2slide8.jpg" alt="BookMyShow Redesign Slide 5"></div>
+	  <div class="slide"><img src="images/2slide9.jpg" alt="BookMyShow Redesign Slide 5"></div>
+	  <div class="slide"><img src="images/2slide10.jpg" alt="BookMyShow Redesign Slide 5"></div>
+	  <div class="slide"><img src="images/2slide11.jpg" alt="BookMyShow Redesign Slide 5"></div>
+	  <div class="slide"><img src="images/2slide12.jpg" alt="BookMyShow Redesign Slide 5"></div>
+	  <div class="slide"><img src="images/2slide13.jpg" alt="BookMyShow Redesign Slide 5"></div>
+	  <div class="slide"><img src="images/2slide14.jpg" alt="BookMyShow Redesign Slide 5"></div>
+	  <div class="slide"><img src="images/2slide15.jpg" alt="BookMyShow Redesign Slide 5"></div>
+	  <div class="slide"><img src="images/2slide16.jpg" alt="BookMyShow Redesign Slide 5"></div>
+	  <div class="slide"><img src="images/2slide17.jpg" alt="BookMyShow Redesign Slide 5"></div>
+	  <div class="slide"><img src="images/2slide18.jpg" alt="BookMyShow Redesign Slide 5"></div>
+	  <div class="slide"><img src="images/2slide19.jpg" alt="BookMyShow Redesign Slide 5"></div>
+	  <div class="slide"><img src="images/2slide20.jpg" alt="BookMyShow Redesign Slide 5"></div>
+	  <div class="slide"><img src="images/2slide21.jpg" alt="BookMyShow Redesign Slide 5"></div>
+	  <div class="slide"><img src="images/2slide22.jpg" alt="BookMyShow Redesign Slide 5"></div>
+	  <div class="slide"><img src="images/2slide23.jpg" alt="BookMyShow Redesign Slide 5"></div>
+	  <div class="slide"><img src="images/2slide24.jpg" alt="BookMyShow Redesign Slide 5"></div>
+	  <div class="slide"><img src="images/2slide25.jpg" alt="BookMyShow Redesign Slide 5"></div>
+	  <div class="slide"><img src="images/2slide26.jpg" alt="BookMyShow Redesign Slide 5"></div>
+	  <div class="slide"><img src="images/2slide27.jpg" alt="BookMyShow Redesign Slide 5"></div>
+	  <div class="slide"><img src="images/2slide28.jpg" alt="BookMyShow Redesign Slide 5"></div>
+	  <div class="slide"><img src="images/2slide29.jpg" alt="BookMyShow Redesign Slide 5"></div>
+	</main>
+	
+
+   <!-- FOOTER -->
+  <footer class="modern-footer">
+    <nav class="footer-nav">
+      <a href="index.html">HOME</a>
+      <a href="about.html">ABOUT</a>
+      <a href="projects.html">PROJECTS</a>
+      <a href="contact.html">CONTACT</a>
+    </nav>
+
+    <div class="footer-socials">
+      <a href="https://www.instagram.com/chay_a_m?igsh=MTkzdTloaWEyOTlhOQ==" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.behance.net/meenakshiramesh" target="_blank"><i class="fab fa-behance"></i></a>
+      <a href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+
+    <p class="footer-copy">© 2025, Meenakshi Ramesh</p>
+  </footer>
+
+  <script>
+    const mobileNav = document.getElementById('mobileNav');
+    const overlay = document.getElementById('overlay');
+
+    function toggleMenu() {
+      mobileNav.classList.toggle('active');
+      overlay.classList.toggle('active');
+    }
+
+    function closeMenu() {
+      mobileNav.classList.remove('active');
+      overlay.classList.remove('active');
+    }
+  </script>
+</body>
+</html>

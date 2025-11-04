@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photography Features</title>
+
+  <style>
+    /* Reset + Base */
+    body {
+      margin: 0;
+      background-color: #0d0d0d;
+      color: #fff;
+      font-family: Helvetica, Arial, sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    section {
+      padding: 120px 8%;
+    }
+
+    /* Section Headings */
+    .section-header {
+      background-color: #111;
+      padding: 80px 0 60px;
+      text-align: center;
+    }
+
+    .section-header h2 {
+      font-size: 2.2rem;
+      font-weight: 500;
+      text-transform: lowercase;
+      letter-spacing: 1px;
+      margin: 0;
+    }
+
+    .section-header p.desc {
+      color: #cfcfcf;
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-top: 15px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Masonry Grid */
+    .gallery {
+      column-count: 3;
+      column-gap: 18px;
+      padding-top: 60px;
+    }
+
+    .gallery img {
+      width: 100%;
+      margin-bottom: 18px;
+      display: block;
+      object-fit: cover;
+      transition: all 0.3s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.03);
+      filter: brightness(85%);
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .gallery {
+        column-count: 2;
+      }
+    }
+
+    @media (max-width: 600px) {
+      section {
+        padding: 70px 5%;
+      }
+      .gallery {
+        column-count: 1;
+      }
+    }
+
+    /* NAVBAR */
+    header {
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: center;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    nav a {
+      color: #ffffff;
+      font-family: 'Cormorant Garamond', serif;
+      text-decoration: none;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+      margin: 0 25px;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: #aaaaaa;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      position: absolute;
+      right: 30px;
+      top: 25px;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 25px;
+      height: 18px;
+      cursor: pointer;
+      z-index: 110;
+    }
+
+    .hamburger div {
+      width: 100%;
+      height: 2px;
+      background-color: #fff;
+      transition: all 0.3s ease;
+    }
+
+    /* Overlay Menu */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100vh;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(8px);
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      z-index: 105;
+      transition: opacity 0.3s ease;
+    }
+
+    .mobile-nav.active {
+      display: flex;
+    }
+
+    .mobile-nav a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.3rem;
+      font-family: 'Cormorant Garamond', serif;
+      letter-spacing: 1px;
+    }
+
+    .mobile-nav a:hover {
+      color: #cccccc;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 25px;
+      right: 35px;
+      font-size: 2rem;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+    }
+
+    .overlay.active {
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+    }
+
+    /* FOOTER */
+    .modern-footer {
+      background-color: #211c19;
+      color: #fff;
+      text-align: center;
+      padding: 80px 0 40px;
+      font-family: "Playfair Display", serif;
+    }
+
+    .footer-nav {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 40px;
+    }
+
+    .footer-nav a {
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: 2px;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .footer-nav a:hover {
+      color: #d4d4d4;
+    }
+
+    .footer-socials {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 25px;
+    }
+
+    .footer-socials a {
+      background-color: #fff;
+      color: #000;
+      font-size: 1.2rem;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .footer-socials a:hover {
+      background-color: #ddd;
+      transform: scale(1.1);
+    }
+
+    .footer-copy {
+      font-size: 0.85rem;
+      color: #b8b8b8;
+      margin-top: 10px;
+      letter-spacing: 1px;
+    }
+	  .more-work {
+  text-align: center;
+  padding: 60px 20px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+}
+
+.more-work a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.more-work a:hover {
+  color: #d4d4d4;
+}
+
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="hamburger" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </header>
+
+  <!-- Overlay + Mobile Menu -->
+  <div class="overlay" id="overlay" onclick="closeMenu()"></div>
+  <div class="mobile-nav" id="mobileNav">
+    <div class="close-btn" onclick="closeMenu()">&times;</div>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  
+  <!-- Shoot 1 -->
+  <section id="shoot1">
+    <div class="section-header">
+      <h2>travis edit</h2>
+      <p class="desc">a raw, moody celebrity-inspired styling piece capturing energy and rebellion through sharp contrasts and textures.</p>
+    </div>
+    <div class="gallery">
+      <img src="images/travis1.jpg" alt="Travis Shoot 1">
+      <img src="images/travis2.jpg" alt="Travis Shoot 2">
+      <img src="images/travis3.jpg" alt="Travis Shoot 3">
+      <img src="images/travis4.jpg" alt="Travis Shoot 4">
+      <img src="images/travis5.jpg" alt="Travis Shoot 5">
+      <img src="images/travis6.JPG" alt="Travis Shoot 6">
+    </div>
+  </section>
+
+  <!-- Shoot 2 -->
+  <section id="shoot2">
+    <div class="section-header">
+      <h2>h&m campaign</h2>
+      <p class="desc">a bold visual direction for a hypothetical h&m campaign — vibrant tones and crisp, retail-forward styling.</p>
+    </div>
+    <div class="gallery">
+      <img src="images/hm1.jpg" alt="H&M 1">
+      <img src="images/hm2.jpg" alt="H&M 2">
+      <img src="images/hm3.jpg" alt="H&M 3">
+      <img src="images/hm4.jpg" alt="H&M 4">
+      <img src="images/hm5.jpg" alt="H&M 5">
+      <img src="images/hm6.jpg" alt="H&M 6">
+    </div>
+  </section>
+
+  <!-- Shoot 3 -->
+  <section id="shoot3">
+    <div class="section-header">
+      <h2>anarkali edit</h2>
+      <p class="desc">a handcrafted anarkali piece styled with softness — layers, movement, and natural textures.</p>
+    </div>
+    <div class="gallery">
+      <img src="images/anarkali1.jpg" alt="Anarkali 1">
+      <img src="images/anarkali2.jpg" alt="Anarkali 2">
+      <img src="images/anarkali3.jpg" alt="Anarkali 3">
+      <img src="images/anarkali4.jpg" alt="Anarkali 4">
+      <img src="images/anarkali5.jpg" alt="Anarkali 5">
+      <img src="images/anarkali6.jpg" alt="Anarkali 6">
+      <img src="images/anarkali7.jpg" alt="Anarkali 7">
+    </div>
+  </section>
+
+  <!-- Shoot 4 -->
+  <section id="shoot4">
+    <div class="section-header">
+      <h2>levi’s edit</h2>
+      <p class="desc">a minimal, urban hypothetical for levi’s — denim redefined through light, grit, and clean composition.</p>
+    </div>
+    <div class="gallery">
+      <img src="images/levis1.jpg" alt="Levis 1">
+      <img src="images/levis2.jpg" alt="Levis 2">
+      <img src="images/levis3.jpg" alt="Levis 3">
+      <img src="images/levis4.jpg" alt="Levis 4">
+      <img src="images/levis5.jpg" alt="Levis 5">
+      <img src="images/levis6.jpg" alt="Levis 6">
+    </div>
+  </section>
+
+  <!-- Shoot 5 -->
+  <section id="shoot5">
+    <div class="section-header">
+      <h2>editorial</h2>
+      <p class="desc">a fashion-forward styling concept — bold silhouettes and cinematic stillness in every frame.</p>
+    </div>
+    <div class="gallery">
+      <img src="images/editorial1.jpg" alt="Editorial 1">
+      <img src="images/editorial2.jpg" alt="Editorial 2">
+      <img src="images/editorial3.jpg" alt="Editorial 3">
+      <img src="images/editorial4.jpg" alt="Editorial 4">
+      <img src="images/editorial5.jpg" alt="Editorial 5">
+      <img src="images/editorial6.jpg" alt="Editorial 6">
+      <img src="images/editorial7.jpg" alt="Editorial 7">
+    </div>
+  </section>
+<div class="more-work">
+    check out more of my work on — <a href="https://www.instagram.com/chay_a_m" target="_blank">@chayam</a>
+  </div>
+
+  <footer class="modern-footer">
+    <nav class="footer-nav">
+      <a href="index.html">HOME</a>
+      <a href="about.html">ABOUT</a>
+      <a href="projects.html">PROJECTS</a>
+      <a href="contact.html">CONTACT</a>
+    </nav>
+
+    <div class="footer-socials">
+      <a href="https://www.instagram.com/chay_a_m?igsh=MTkzdTloaWEyOTlhOQ==" target="_blank">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://www.behance.net/meenakshiramesh" target="_blank">
+        <i class="fab fa-behance"></i>
+      </a>
+      <a href="https://www.linkedin.com/" target="_blank">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </div>
+
+    <p class="footer-copy">© 2025, Meenakshi Ramesh</p>
+  </footer>
+
+  <script>
+    const mobileNav = document.getElementById('mobileNav');
+    const overlay = document.getElementById('overlay');
+
+    function toggleMenu() {
+      mobileNav.classList.toggle('active');
+      overlay.classList.toggle('active');
+    }
+
+    function closeMenu() {
+      mobileNav.classList.remove('active');
+      overlay.classList.remove('active');
+    }
+  </script>
+</body>
+</html>
