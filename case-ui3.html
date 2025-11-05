@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Case Study — Cult.fit Redesign</title>
 
-  <!-- Fonts -->
+ 
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome -->
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
@@ -41,7 +41,17 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       display: flex;
       justify-content: center;
+      align-items: center;
       padding: 20px 40px;
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      width: 100%;
+      max-width: 1400px;
     }
 
     .navlinks {
@@ -59,6 +69,40 @@
     }
 
     .navlinks a:hover { color: var(--muted); }
+
+    /* Hamburger Icon */
+    .menu-toggle {
+      display: none;
+      font-size: 1.8rem;
+      color: #fff;
+      background: none;
+      border: none;
+      position: absolute;
+      right: 20px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .navlinks {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        text-align: center;
+        padding: 20px 0;
+      }
+
+      .navlinks.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+    }
 
     /* MAIN CONTENT */
     main {
@@ -173,12 +217,15 @@
 
   <!-- NAV -->
   <header class="site-nav">
-    <nav class="navlinks">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="projects.html">Projects</a>
-      <a href="contact.html">Contact</a>
-    </nav>
+    <div class="nav-container">
+      <button class="menu-toggle" id="menu-toggle"><i class="fas fa-bars"></i></button>
+      <nav class="navlinks" id="navlinks">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
   </header>
 
   <!-- MAIN -->
@@ -186,31 +233,31 @@
     <h1>Cult.fit Redesign</h1>
 
     <!-- Stacked slides -->
-    <div class="slide"><img src="images/cult1.jpg" alt="Cult.fit Redesign Slide 1"></div>
-    <div class="slide"><img src="images/cult2.jpg" alt="Cult.fit Redesign Slide 2"></div>
-    <div class="slide"><img src="images/cult3.jpg" alt="Cult.fit Redesign Slide 3"></div>
-    <div class="slide"><img src="images/cult4.jpg" alt="Cult.fit Redesign Slide 4"></div>
-    <div class="slide"><img src="images/cult5.jpg" alt="Cult.fit Redesign Slide 5"></div>
-    <div class="slide"><img src="images/cult6.jpg" alt="Cult.fit Redesign Slide 6"></div>
-    <div class="slide"><img src="images/cult7.jpg" alt="Cult.fit Redesign Slide 7"></div>
-    <div class="slide"><img src="images/cult8.jpg" alt="Cult.fit Redesign Slide 8"></div>
-    <div class="slide"><img src="images/cult9.jpg" alt="Cult.fit Redesign Slide 9"></div>
-    <div class="slide"><img src="images/cult10.jpg" alt="Cult.fit Redesign Slide 10"></div>
-    <div class="slide"><img src="images/cult11.jpg" alt="Cult.fit Redesign Slide 11"></div>
-    <div class="slide"><img src="images/cult12.jpg" alt="Cult.fit Redesign Slide 12"></div>
-    <div class="slide"><img src="images/cult13.jpg" alt="Cult.fit Redesign Slide 13"></div>
-    <div class="slide"><img src="images/cult14.jpg" alt="Cult.fit Redesign Slide 14"></div>
-    <div class="slide"><img src="images/cult15.jpg" alt="Cult.fit Redesign Slide 15"></div>
-    <div class="slide"><img src="images/cult16.jpg" alt="Cult.fit Redesign Slide 16"></div>
-    <div class="slide"><img src="images/cult17.jpg" alt="Cult.fit Redesign Slide 17"></div>
-    <div class="slide"><img src="images/cult18.jpg" alt="Cult.fit Redesign Slide 18"></div>
-    <div class="slide"><img src="images/cult19.jpg" alt="Cult.fit Redesign Slide 19"></div>
-    <div class="slide"><img src="images/cult20.jpg" alt="Cult.fit Redesign Slide 20"></div>
-	  <div class="slide"><img src="images/cult21.jpg" alt="Cult.fit Redesign Slide 20"></div>
-	  <div class="slide"><img src="images/cult22.jpg" alt="Cult.fit Redesign Slide 20"></div>
-	  <div class="slide"><img src="images/cult23.jpg" alt="Cult.fit Redesign Slide 20"></div>
-	  <div class="slide"><img src="images/cult24.jpg" alt="Cult.fit Redesign Slide 20"></div>
-	  <div class="slide"><img src="images/cult25.jpg" alt="Cult.fit Redesign Slide 20"></div>
+    <div class="slide"><img src="images/cult1.jpg" alt=""></div>
+    <div class="slide"><img src="images/cult2.jpg" alt=""></div>
+    <div class="slide"><img src="images/cult3.jpg" alt=""></div>
+    <div class="slide"><img src="images/cult4.jpg" alt=""></div>
+    <div class="slide"><img src="images/cult5.jpg" alt=""></div>
+    <div class="slide"><img src="images/cult6.jpg" alt=""></div>
+    <div class="slide"><img src="images/cult7.jpg" alt=""></div>
+    <div class="slide"><img src="images/cult8.jpg" alt=""></div>
+    <div class="slide"><img src="images/cult9.jpg" alt=""></div>
+    <div class="slide"><img src="images/cult10.jpg" alt=""></div>
+    <div class="slide"><img src="images/cult11.jpg" alt=""></div>
+    <div class="slide"><img src="images/cult12.jpg" alt=""></div>
+    <div class="slide"><img src="images/cult13.jpg" alt=""></div>
+    <div class="slide"><img src="images/cult14.jpg" alt=""></div>
+    <div class="slide"><img src="images/cult15.jpg" alt=""></div>
+    <div class="slide"><img src="images/cult16.jpg" alt=""></div>
+    <div class="slide"><img src="images/cult17.jpg" alt=""></div>
+    <div class="slide"><img src="images/cult18.jpg" alt=""></div>
+    <div class="slide"><img src="images/cult19.jpg" alt=""></div>
+    <div class="slide"><img src="images/cult20.jpg" alt=""></div>
+    <div class="slide"><img src="images/cult21.jpg" alt=""></div>
+    <div class="slide"><img src="images/cult22.jpg" alt=""></div>
+    <div class="slide"><img src="images/cult23.jpg" alt=""></div>
+    <div class="slide"><img src="images/cult24.jpg" alt=""></div>
+    <div class="slide"><img src="images/cult25.jpg" alt=""></div>
 
     <!-- Back button -->
     <div style="text-align:center;">
@@ -228,20 +275,22 @@
     </nav>
 
     <div class="footer-socials">
-      <a href="https://www.instagram.com/chay_a_m?igsh=MTkzdTloaWEyOTlhOQ==" target="_blank">
-        <i class="fab fa-instagram"></i>
-      </a>
-      <a href="https://www.behance.net/meenakshiramesh" target="_blank">
-        <i class="fab fa-behance"></i>
-      </a>
-      <a href="https://www.linkedin.com/" target="_blank">
-        <i class="fab fa-linkedin-in"></i>
-      </a>
+      <a href="https://www.instagram.com/chay_a_m?igsh=MTkzdTloaWEyOTlhOQ==" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.behance.net/meenakshiramesh" target="_blank"><i class="fab fa-behance"></i></a>
+      <a href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
     </div>
 
     <p class="footer-copy">© 2025, Meenakshi Ramesh</p>
   </footer>
 
-  <script src="https://kit.fontawesome.com/3b2e1f2c76.js" crossorigin="anonymous"></script>
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const navlinks = document.getElementById('navlinks');
+
+    menuToggle.addEventListener('click', () => {
+      navlinks.classList.toggle('active');
+    });
+	  
+  </script>
 </body>
 </html>

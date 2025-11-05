@@ -335,20 +335,43 @@
       <p>Email: <a href="mailto:meeneenmu@gmail.com">meeneenmu@gmail.com</a></p>
       <p>Phone: <a href="tel:+917907569808">+91 7907569808</a></p>
     </div>
+<form id="contact-form" action="https://formspree.io/f/mnnqgebl" method="POST">
+  <label for="name">Name</label>
+  <input type="text" id="name" name="name" required />
 
-    <form action="https://formspree.io/f/mnnqgebl" method="POST">
-      <label for="name">Name</label>
-      <input type="text" id="name" name="name" required>
+  <label for="email">Email</label>
+  <input type="email" id="email" name="_replyto" required />
+
+  <label for="message">Message</label>
+  <textarea id="message" name="message" rows="4" required></textarea>
+
+  <button type="submit">SEND MESSAGE</button>
+  <p id="form-status" style="margin-top: 10px; color: #c5c5c5;"></p>
+</form>
+
+<script>
+  const form = document.getElementById("contact-form");
+  const status = document.getElementById("form-status");
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const data = new FormData(form);
+    const response = await fetch(form.action, {
+      method: form.method,
+      body: data,
+      headers: { Accept: "application/json" },
+    });
+
+    if (response.ok) {
+      status.innerHTML = "✅ Message sent successfully!";
+      form.reset();
+    } else {
+      status.innerHTML = "❌ Oops! Something went wrong. Please try again.";
+    }
+  });
+</script>
 
 
-      <label for="email">Email</label>
-      <input type="email" id="email" name="_replyto" required>
-
-      <label for="message">Message</label>
-      <textarea id="message" name="message" required></textarea>
-
-      <button type="submit">SEND MESSAGE</button>
-    </form>
   </section>
 
   <!-- FOOTER -->
